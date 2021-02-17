@@ -6,12 +6,26 @@ import pandas as pd
 def home(request):
     return render(request,'home.html')
 
+def how(request):
+    return render(request,'how.html')
+
 def bitcoin(request):
-    ed = float( request.POST['ed'] )
-    bcc = float( request.POST['bcc'] )
-    eos = float( request.POST['eos'] )
-    tron = float( request.POST['tron'] )
-    lc = float( request.POST['lc'] )    
+    eda = float( request.POST['eda'] )
+    bca = float( request.POST['bca'] )
+    eoa = float( request.POST['eoa'] )
+    tra = float( request.POST['tra'] )
+    lca = float( request.POST['lca'] )   
+    edb = float( request.POST['edb'] )
+    bcb = float( request.POST['bcb'] )
+    eob = float( request.POST['eob'] )
+    trb = float( request.POST['trb'] )
+    lcb = float( request.POST['lcb'] )  
+    
+    eds = (edb - eda)/eda
+    bcs = (bcb - bca)/bca
+    eos = (eob - eoa)/eoa
+    trs = (trb - tra)/tra
+    lcs = (lcb - lca)/lca
 
     # 선형회귀 알고리즘
     df = pd.read_csv("price data.csv")
@@ -23,7 +37,7 @@ def bitcoin(request):
     from sklearn.linear_model import LinearRegression
     mlr = LinearRegression()
     mlr.fit(x_train, y_train)
-    today_coin = [[ed, bcc, eos, tron, lc]]
+    today_coin = [[eds, bcs, eos, trs, lcs]]
     bitcoin = mlr.predict(today_coin)
 
-    return render(request,'bitcoin.html',{'ed':ed,'bcc':bcc,'eos':eos,'tron':tron,'lc':lc,'bitcoin':bitcoin })
+    return render(request,'bitcoin.html',{'eds':eds,'bcs':bcs,'eos':eos,'trs':trs,'lcs':lcs,'bitcoin':bitcoin })
