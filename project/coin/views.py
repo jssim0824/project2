@@ -39,5 +39,19 @@ def bitcoin(request):
     mlr.fit(x_train, y_train)
     today_coin = [[eds, bcs, eos, trs, lcs]]
     bitcoin = mlr.predict(today_coin)
-
-    return render(request,'bitcoin.html',{'eds':eds,'bcs':bcs,'eos':eos,'trs':trs,'lcs':lcs,'bitcoin':bitcoin })
+    
+    bitcoin = round(float(bitcoin), 3)
+    if bitcoin >= 3 and bitcoin < 5 :
+        a = '매수'
+    else :
+        a = ''
+    if bitcoin >= 5 :
+        b = '적극 매수'
+    else :
+        b = ''
+    if bitcoin < 3 :
+        c = '중립'
+    else :
+        c = ''
+        
+    return render(request,'bitcoin.html',{'eds':eds,'bcs':bcs,'eos':eos,'trs':trs,'lcs':lcs,'bitcoin':bitcoin, 'a':a, 'b':b, 'c':c})
