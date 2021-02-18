@@ -1,6 +1,10 @@
 from django.contrib import admin
 from django.urls import path
 import coin.views
+from django.conf.urls import handler500
+
+handler500 = 'coin.views.error'
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
