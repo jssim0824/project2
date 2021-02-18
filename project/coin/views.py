@@ -1,6 +1,11 @@
 from django.shortcuts import render
 import numpy as np
 import pandas as pd
+from django.template import RequestContext
+
+def error(request):
+    return render(request, 'error.html')
+
 
 # Create your views here.
 def home(request):
