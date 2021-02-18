@@ -5,7 +5,6 @@ from django.conf.urls import handler500
 
 handler500 = 'coin.views.error'
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', coin.views.home, name='home' ),
