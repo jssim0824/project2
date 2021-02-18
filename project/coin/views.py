@@ -6,7 +6,6 @@ from django.template import RequestContext
 def error(request):
     return render(request, 'error.html')
 
-
 # Create your views here.
 def home(request):
     return render(request,'home.html')
